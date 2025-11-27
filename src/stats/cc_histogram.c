@@ -5,7 +5,9 @@
 
 #include <float.h>
 #include <math.h>
-#include <x86intrin.h>
+#if defined(__x86_64__)
+    #include <x86intrin.h>
+#endif
 
 struct histo_u32 *
 histo_u32_create(uint32_t m, uint32_t r, uint32_t n)
