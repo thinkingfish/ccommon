@@ -68,7 +68,7 @@ assert_file_contents(const char *tmpname, const char *str, size_t len)
     FILE *fp = fopen(tmpname, "r");
     ck_assert_ptr_ne(fp, NULL);
 
-    ck_assert_uint_eq(len, fread(filedata, sizeof(char), len + 1, fp));
+    ck_assert_uint_eq(len, fread(filedata, sizeof(char), len, fp));
     ck_assert_int_eq(memcmp(filedata, str, len * sizeof(char)), 0);
 
     fclose(fp);
