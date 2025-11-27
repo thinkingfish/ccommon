@@ -228,7 +228,7 @@ void
 _log_fd(int fd, const char *fmt, ...)
 {
     int len, size, errno_save;
-    char buf[LOG_MAX_LEN];
+    char buf[LOG_MAX_LEN + 1];
     va_list args;
     ssize_t n;
 
@@ -240,7 +240,9 @@ _log_fd(int fd, const char *fmt, ...)
     len += cc_vscnprintf(buf, size, fmt, args);
     va_end(args);
 
-    buf[len++] = '\n';
+    if (len < LOG_MAX_LEN) {
+        buf[len++] = '\n';
+    }
 
     n = write(fd, buf, len);
 
