@@ -40,7 +40,7 @@ static bool log_init = false;
 
 /* this function is called from rust so that it can use log_setup */
 log_metrics_st *
-log_metrics_create()
+log_metrics_create(void)
 {
     log_metrics_st *metrics = cc_alloc(sizeof(log_metrics_st));
     if (metrics == NULL) {
